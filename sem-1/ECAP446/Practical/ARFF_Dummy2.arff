@@ -1,0 +1,16 @@
+@relation Dummy2
+
+@attribute Age numeric
+@attribute Year numeric
+@attribute Price numeric
+
+@data
+12,2015,13000
+13,2016,14500
+14,2017,12800
+15,2018,13000
+16,2019,15000
+17,2020,16600
+18,2021,18000
+19,2022,35000
+20,2023,40000
