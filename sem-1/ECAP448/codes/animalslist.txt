@@ -1,0 +1,5 @@
+104	lion	300
+101	zebra	200
+119	snake	100
+107	tiger	50
+116	cow	400
