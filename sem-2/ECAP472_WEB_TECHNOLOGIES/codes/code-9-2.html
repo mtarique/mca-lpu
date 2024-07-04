@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Objects defined by user</title>
+    <script>
+        // Defination of function that will work as method
+        function addTest(marks) {
+            this.test = marks;
+        }
+
+        function student(sname, course) {
+            this.sname = sname; 
+            this.course = course; 
+            this.addTest = addTest
+        }
+    </script>
+</head>
+<body>
+    <script>
+        var myClass = new Class("Tarique", "MCA"); 
+        myClass.addTest(sst); 
+
+        varmyclass=new class("BCA","Ashraf");myclass.addtest(sst);
+        document.write("Student Name is : " + myclass.sname +
+"<br>");document.write("Student
+Courseis:"+myclass.course+"<br>");document.write("Student test
+courseis:"+myclass.test+"<br>");
+    </script>
+</body>
+</html>

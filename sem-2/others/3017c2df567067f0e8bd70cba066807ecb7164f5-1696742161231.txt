@@ -1,0 +1,11 @@
+1. file>new>javaproject
+2. write projectname
+3. add hadoop libraries to project
+libraries>add external jars> filesystem on left hand side>usr>lib>hadoop>select all jar files
+  add external jar>f
+File system>usr>lib>hadoop>client>select all jar files
+4.click on finish
+5. Create java mapreduce program
+   a)right clik on src folder>select class>write down name "WordCount">finish
+
+6.Rightclick on wordcount program from left hand side. Select Export>>Java>>Jar file>>Export destination>>WordCount.jar>>Finish

@@ -1,0 +1,67 @@
+MONGO db databse related commands
+1. Show all the database
+              >show dbs
+2.To view current databse
+              >db
+3. How to create new databse
+           >use divank
+create and enter into database divank.
+Mongodb only creates the database when you first store the data in that dbase. This data could be  collection or a document. if you run show dbs command, it will not show the name of dbs in output until you enter single row.
+4. Delete database
+
+>db.dropDatabase()
+
+Collection RELATED COMMANDS
+1. To see all collections
+	>show collections
+2. Create collection
+	>db.createCollection('comment')
+3. Delete a collection
+	>db.comment.drop()
+4. Retuen the count of documents that would match a find() query for a collection
+	>db.collection.count()
+  
+ROWS RELATED COMMANDS
+1. Insert row(Rows are like entry in collections)
+
+2. Insert more than one row
+db.Alina.insertMany([{ 'name':'Ram', 'lang':'Javascript', 'member-since':5},{'name':'Sham', 'lang':'Javascript', 'join':5},{'name':'Geeta', 'lang':'Python', 'join':8}])
+
+3. To check either the rows has been insert or not
+	>db.Alina.find()
+4.pretty()
+ 	>db.Alina.find().pretty()
+   output should come in good format.
+     Change the output format 
+
+5. Add new column in existing table
+
+db.Alina.insert({ 'name':'Ram', 'lang':'Javascript', 'member-since':5, 'date':new Date()})
+
+6. findOne()->search only one record. 
+	db.Alina.findOne({'name':'Ram'})
+Returns one document that satisfies the specified quiery criteria on the collection or view. 
+if multiple documents satisfy the query, this method returns the first document according to the natural order which reflects the order of documents on the disk.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

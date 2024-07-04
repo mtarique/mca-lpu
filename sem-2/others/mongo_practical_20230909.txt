@@ -1,0 +1,510 @@
+Last login: Sat Sep  9 08:58:48 on console
+    ~  mongodb                                                                           ✔  12:22:09 
+zsh: command not found: mongodb
+
+    ~  mongosh                                                                       127 ✘  12:22:14 
+Current Mongosh Log ID:	64fc16260790349bd9004ea4
+Connecting to:		mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+1.10.6
+Using MongoDB:		7.0.0
+Using Mongosh:		1.10.6
+
+For mongosh info see: https://docs.mongodb.com/mongodb-shell/
+
+------
+   The server generated these startup warnings when booting
+   2023-09-09T08:58:54.859+05:30: Access control is not enabled for the database. Read and write access to data and configuration is unrestricted
+------
+
+test> show dbs
+ECAP456_DB  72.00 KiB
+admin       40.00 KiB
+config      84.00 KiB
+local       72.00 KiB
+test> show dbs
+ECAP456_DB  72.00 KiB
+admin       40.00 KiB
+config      84.00 KiB
+local       72.00 KiB
+test> use hr
+switched to db hr
+hr> db.employees.insert
+[Function: insert] AsyncFunction {
+  apiVersions: [ 1, Infinity ],
+  serverVersions: [ '0.0.0', '3.6.0' ],
+  deprecated: true,
+  returnsPromise: true,
+  topologies: [ 'ReplSet', 'Sharded', 'LoadBalanced', 'Standalone' ],
+  returnType: { type: 'unknown', attributes: {} },
+  platforms: [ 'Compass', 'Browser', 'CLI' ],
+  isDirectShellCommand: false,
+  acceptsRawInput: false,
+  shellCommandCompleter: undefined,
+  help: [Function (anonymous)] Help
+}
+hr> db.employees.insert({
+... 'employeeNo':2,
+... 'firstName': 'Alexis',
+... 'lastName': 'Bell',
+... 'company': 'LLC',
+... 'age': 30
+... })
+DeprecationWarning: Collection.insert() is deprecated. Use insertOne, insertMany, or bulkWrite.
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId("64fc17b80790349bd9004ea5") }
+}
+hr> db.employees.find()
+[
+  {
+    _id: ObjectId("64fc17b80790349bd9004ea5"),
+    employeeNo: 2,
+    firstName: 'Alexis',
+    lastName: 'Bell',
+    company: 'LLC',
+    age: 30
+  }
+]
+hr> db.employees.insert({ 'employeeNo': 2, 'firstName': 'Alexis', 'lastName': 'Bell', 'company': 'LLC', 'age': 30 })
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId("64fc17f00790349bd9004ea6") }
+}
+hr> db.employees.find()
+[
+  {
+    _id: ObjectId("64fc17b80790349bd9004ea5"),
+    employeeNo: 2,
+    firstName: 'Alexis',
+    lastName: 'Bell',
+    company: 'LLC',
+    age: 30
+  },
+  {
+    _id: ObjectId("64fc17f00790349bd9004ea6"),
+    employeeNo: 2,
+    firstName: 'Alexis',
+    lastName: 'Bell',
+    company: 'LLC',
+    age: 30
+  }
+]
+hr> db.employees.insert({'_id':12, 'employeeNo': 2, 'firstName': 'Alexis', 'lastName': 'Bell', 'company': 'LLC', 'age': 30 })
+{ acknowledged: true, insertedIds: { '0': 12 } }
+hr> db.employees.find()
+[
+  {
+    _id: ObjectId("64fc17b80790349bd9004ea5"),
+    employeeNo: 2,
+    firstName: 'Alexis',
+    lastName: 'Bell',
+    company: 'LLC',
+    age: 30
+  },
+  {
+    _id: ObjectId("64fc17f00790349bd9004ea6"),
+    employeeNo: 2,
+    firstName: 'Alexis',
+    lastName: 'Bell',
+    company: 'LLC',
+    age: 30
+  },
+  {
+    _id: 12,
+    employeeNo: 2,
+    firstName: 'Alexis',
+    lastName: 'Bell',
+    company: 'LLC',
+    age: 30
+  }
+]
+hr> db.employees.insert({'_id':12, 'employeeNo': 2, 'firstName': 'Alexis', 'lastName': 'Bell', 'company': 'LLC', 'age': 30 })
+Uncaught:
+MongoBulkWriteError: E11000 duplicate key error collection: hr.employees index: _id_ dup key: { _id: 12 }
+Result: BulkWriteResult {
+  insertedCount: 0,
+  matchedCount: 0,
+  modifiedCount: 0,
+  deletedCount: 0,
+  upsertedCount: 0,
+  upsertedIds: {},
+  insertedIds: { '0': 12 }
+}
+Write Errors: [
+  WriteError {
+    err: {
+      index: 0,
+      code: 11000,
+      errmsg: 'E11000 duplicate key error collection: hr.employees index: _id_ dup key: { _id: 12 }',
+      errInfo: undefined,
+      op: {
+        _id: 12,
+        employeeNo: 2,
+        firstName: 'Alexis',
+        lastName: 'Bell',
+        company: 'LLC',
+        age: 30
+      }
+    }
+  }
+]
+hr> db.employees.find()
+[
+  {
+    _id: ObjectId("64fc17b80790349bd9004ea5"),
+    employeeNo: 2,
+    firstName: 'Alexis',
+    lastName: 'Bell',
+    company: 'LLC',
+    age: 30
+  },
+  {
+    _id: ObjectId("64fc17f00790349bd9004ea6"),
+    employeeNo: 2,
+    firstName: 'Alexis',
+    lastName: 'Bell',
+    company: 'LLC',
+    age: 30
+  },
+  {
+    _id: 12,
+    employeeNo: 2,
+    firstName: 'Alexis',
+    lastName: 'Bell',
+    company: 'LLC',
+    age: 30
+  }
+]
+hr> db.employees.insert({ 'employeeNo': 2, 'firstName': 'Alexis', 'lastName': 'Bell', 'company': 'LLC', 'age': 30 })
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId("64fc19460790349bd9004ea7") }
+}
+hr> db.employees.insert({ 'employeeNo': 2, 'firstName': 'Alexis', 'lastName': 'Bell', 'company': 'LLC', 'age': 30 })
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId("64fc194e0790349bd9004ea8") }
+}
+hr> db.employees.insert({ 'employeeNo': 2, 'firstName': 'Alexis', 'lastName': 'Bell', 'company': 'LLC', 'age': 30 })
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId("64fc19530790349bd9004ea9") }
+}
+hr> db.employees.find
+[Function: find] AsyncFunction {
+  returnsPromise: true,
+  apiVersions: [ 1, Infinity ],
+  returnType: 'Cursor',
+  serverVersions: [ '0.0.0', '999.999.999' ],
+  topologies: [ 'ReplSet', 'Sharded', 'LoadBalanced', 'Standalone' ],
+  deprecated: false,
+  platforms: [ 'Compass', 'Browser', 'CLI' ],
+  isDirectShellCommand: false,
+  acceptsRawInput: false,
+  shellCommandCompleter: undefined,
+  help: [Function (anonymous)] Help
+}
+hr> db.employees.find()
+[
+  {
+    _id: ObjectId("64fc17b80790349bd9004ea5"),
+    employeeNo: 2,
+    firstName: 'Alexis',
+    lastName: 'Bell',
+    company: 'LLC',
+    age: 30
+  },
+  {
+    _id: ObjectId("64fc17f00790349bd9004ea6"),
+    employeeNo: 2,
+    firstName: 'Alexis',
+    lastName: 'Bell',
+    company: 'LLC',
+    age: 30
+  },
+  {
+    _id: 12,
+    employeeNo: 2,
+    firstName: 'Alexis',
+    lastName: 'Bell',
+    company: 'LLC',
+    age: 30
+  },
+  {
+    _id: ObjectId("64fc19460790349bd9004ea7"),
+    employeeNo: 2,
+    firstName: 'Alexis',
+    lastName: 'Bell',
+    company: 'LLC',
+    age: 30
+  },
+  {
+    _id: ObjectId("64fc194e0790349bd9004ea8"),
+    employeeNo: 2,
+    firstName: 'Alexis',
+    lastName: 'Bell',
+    company: 'LLC',
+    age: 30
+  },
+  {
+    _id: ObjectId("64fc19530790349bd9004ea9"),
+    employeeNo: 2,
+    firstName: 'Alexis',
+    lastName: 'Bell',
+    company: 'LLC',
+    age: 30
+  }
+]
+hr> db.employees.find({'_id': 12})
+[
+  {
+    _id: 12,
+    employeeNo: 2,
+    firstName: 'Alexis',
+    lastName: 'Bell',
+    company: 'LLC',
+    age: 30
+  }
+]
+hr> db.employees.find({'firstName': 'Alexis'})
+[
+  {
+    _id: ObjectId("64fc17b80790349bd9004ea5"),
+    employeeNo: 2,
+    firstName: 'Alexis',
+    lastName: 'Bell',
+    company: 'LLC',
+    age: 30
+  },
+  {
+    _id: ObjectId("64fc17f00790349bd9004ea6"),
+    employeeNo: 2,
+    firstName: 'Alexis',
+    lastName: 'Bell',
+    company: 'LLC',
+    age: 30
+  },
+  {
+    _id: 12,
+    employeeNo: 2,
+    firstName: 'Alexis',
+    lastName: 'Bell',
+    company: 'LLC',
+    age: 30
+  },
+  {
+    _id: ObjectId("64fc19460790349bd9004ea7"),
+    employeeNo: 2,
+    firstName: 'Alexis',
+    lastName: 'Bell',
+    company: 'LLC',
+    age: 30
+  },
+  {
+    _id: ObjectId("64fc194e0790349bd9004ea8"),
+    employeeNo: 2,
+    firstName: 'Alexis',
+    lastName: 'Bell',
+    company: 'LLC',
+    age: 30
+  },
+  {
+    _id: ObjectId("64fc19530790349bd9004ea9"),
+    employeeNo: 2,
+    firstName: 'Alexis',
+    lastName: 'Bell',
+    company: 'LLC',
+    age: 30
+  }
+]
+hr> db.employees.findOne({'firstName': 'Alexis'})
+{
+  _id: ObjectId("64fc17b80790349bd9004ea5"),
+  employeeNo: 2,
+  firstName: 'Alexis',
+  lastName: 'Bell',
+  company: 'LLC',
+  age: 30
+}
+hr> db.employees.find().pretty()
+[
+  {
+    _id: ObjectId("64fc17b80790349bd9004ea5"),
+    employeeNo: 2,
+    firstName: 'Alexis',
+    lastName: 'Bell',
+    company: 'LLC',
+    age: 30
+  },
+  {
+    _id: ObjectId("64fc17f00790349bd9004ea6"),
+    employeeNo: 2,
+    firstName: 'Alexis',
+    lastName: 'Bell',
+    company: 'LLC',
+    age: 30
+  },
+  {
+    _id: 12,
+    employeeNo: 2,
+    firstName: 'Alexis',
+    lastName: 'Bell',
+    company: 'LLC',
+    age: 30
+  },
+  {
+    _id: ObjectId("64fc19460790349bd9004ea7"),
+    employeeNo: 2,
+    firstName: 'Alexis',
+    lastName: 'Bell',
+    company: 'LLC',
+    age: 30
+  },
+  {
+    _id: ObjectId("64fc194e0790349bd9004ea8"),
+    employeeNo: 2,
+    firstName: 'Alexis',
+    lastName: 'Bell',
+    company: 'LLC',
+    age: 30
+  },
+  {
+    _id: ObjectId("64fc19530790349bd9004ea9"),
+    employeeNo: 2,
+    firstName: 'Alexis',
+    lastName: 'Bell',
+    company: 'LLC',
+    age: 30
+  }
+]
+hr> db.employees.findOne()
+{
+  _id: ObjectId("64fc17b80790349bd9004ea5"),
+  employeeNo: 2,
+  firstName: 'Alexis',
+  lastName: 'Bell',
+  company: 'LLC',
+  age: 30
+}
+hr> db.employees.find({ObjectId('64fc194e0790349bd9004ea8')})
+Uncaught:
+SyntaxError: Unexpected token (1:28)
+
+> 1 | db.employees.find({ObjectId('64fc194e0790349bd9004ea8')})
+    |                             ^
+  2 |
+
+hr> db.employees.find({ObjectID('64fc194e0790349bd9004ea8')})
+Uncaught:
+SyntaxError: Unexpected token (1:28)
+
+> 1 | db.employees.find({ObjectID('64fc194e0790349bd9004ea8')})
+    |                             ^
+  2 |
+
+hr> db.employees.find({'_id': ObjectID('64fc194e0790349bd9004ea8')})
+ReferenceError: ObjectID is not defined
+hr> db.employees.find({'_id': ObjectId('64fc194e0790349bd9004ea8')})
+[
+  {
+    _id: ObjectId("64fc194e0790349bd9004ea8"),
+    employeeNo: 2,
+    firstName: 'Alexis',
+    lastName: 'Bell',
+    company: 'LLC',
+    age: 30
+  }
+]
+hr> db.employees.deleteOne({'employeeNo': 2})
+{ acknowledged: true, deletedCount: 1 }
+hr> db.employees.find()
+[
+  {
+    _id: ObjectId("64fc17f00790349bd9004ea6"),
+    employeeNo: 2,
+    firstName: 'Alexis',
+    lastName: 'Bell',
+    company: 'LLC',
+    age: 30
+  },
+  {
+    _id: 12,
+    employeeNo: 2,
+    firstName: 'Alexis',
+    lastName: 'Bell',
+    company: 'LLC',
+    age: 30
+  },
+  {
+    _id: ObjectId("64fc19460790349bd9004ea7"),
+    employeeNo: 2,
+    firstName: 'Alexis',
+    lastName: 'Bell',
+    company: 'LLC',
+    age: 30
+  },
+  {
+    _id: ObjectId("64fc194e0790349bd9004ea8"),
+    employeeNo: 2,
+    firstName: 'Alexis',
+    lastName: 'Bell',
+    company: 'LLC',
+    age: 30
+  },
+  {
+    _id: ObjectId("64fc19530790349bd9004ea9"),
+    employeeNo: 2,
+    firstName: 'Alexis',
+    lastName: 'Bell',
+    company: 'LLC',
+    age: 30
+  }
+]
+hr> db.employees.find().count()
+(node:2114) [MONGODB DRIVER] Warning: cursor.count is deprecated and will be removed in the next major version, please use `collection.estimatedDocumentCount` or `collection.countDocuments` instead
+(Use `node --trace-warnings ...` to show where the warning was created)
+5
+hr> db.employees.deleteOne({'employeeNo': 2})
+{ acknowledged: true, deletedCount: 1 }
+hr> db.employees.count()
+DeprecationWarning: Collection.count() is deprecated. Use countDocuments or estimatedDocumentCount.
+4
+hr> db.employees.find({}).pretty()
+[
+  {
+    _id: 12,
+    employeeNo: 2,
+    firstName: 'Alexis',
+    lastName: 'Bell',
+    company: 'LLC',
+    age: 30
+  },
+  {
+    _id: ObjectId("64fc19460790349bd9004ea7"),
+    employeeNo: 2,
+    firstName: 'Alexis',
+    lastName: 'Bell',
+    company: 'LLC',
+    age: 30
+  },
+  {
+    _id: ObjectId("64fc194e0790349bd9004ea8"),
+    employeeNo: 2,
+    firstName: 'Alexis',
+    lastName: 'Bell',
+    company: 'LLC',
+    age: 30
+  },
+  {
+    _id: ObjectId("64fc19530790349bd9004ea9"),
+    employeeNo: 2,
+    firstName: 'Alexis',
+    lastName: 'Bell',
+    company: 'LLC',
+    age: 30
+  }
+]
+hr> db.employees.deleteMany({'employeeNo': 2})
+{ acknowledged: true, deletedCount: 4 }
+hr> db.employees.find({}).pretty()
+
+hr>
